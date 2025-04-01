@@ -1,12 +1,20 @@
-# React + Vite
+# Tabela de usuarios
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este é um projeto feito com React e Vite.
 
-Currently, two official plugins are available:
+## 🚀 Pré-requisitos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Antes de começar, certifique-se de ter instalado em sua máquina:
+- [Node.js](https://nodejs.org/) (versão 16 ou superior)
+- [Git](https://git-scm.com/)
+- Um gerenciador de pacotes como **npm** ou **yarn** (usaremos npm neste tutorial)
 
-## Expanding the ESLint configuration
+## 📦 Como Rodar o Projeto Localmente
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 1️⃣ Clone o repositório
+Abra o terminal e execute:
+
+```sh
+git clone [https://github.com/Guts-01/frontend-listar-usuarios.git]
+cd frontend-listar-usuarios
+
