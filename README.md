@@ -44,6 +44,6 @@ npm run dev
 ### Executar testes (se configurado): npm test
 
 #📌 Tecnologias Utilizadas
-## React
 
-## Vite
+- [React](https://react.dev) 
+- [Vite](https://vite.dev)
