@@ -1,0 +1,163 @@
+import  React ,{ useEffect, useState } from "react";
+import axios from "axios";
+import "./App.css";
+
+function App() {
+  const [usuarios, setUsuarios] = useState([]);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [usuarioAtual, setUsuarioAtual] = useState(null); 
+
+  useEffect(() => {
+    axios.get("https://backend-listar-users.onrender.com/usuarios")
+      .then(response => {
+        console.log(response.data);
+        setUsuarios(response.data);
+      })
+      .catch(error => console.error(error));
+  }, []);
+
+  const adicionarUsuario = () => {
+    axios.post("https://backend-listar-users.onrender.com/usuarios", { name,email, password })
+      .then(response => {
+        setUsuarios([...usuarios, response.data]);
+        setName("");
+        setEmail("");
+        setPassword("");
+      })
+      .catch(error => console.error(error));
+  };
+
+  const deletarUsuario = (id) => {
+    axios.delete(`https://backend-listar-users.onrender.com/${id}`)
+      .then(() => {
+        setUsuarios(usuarios.filter(user => user.id !== id))
+        console.log("Usuário deletado com sucesso!");
+      })
+      .catch(
+        error => 
+          console.error(error),
+          console.log(`erro ao deletar o usuario ${id}`),
+      );
+  }
+
+  // const deletarTodosUsuarios = () => {
+  //   axios.delete(http://localhost:9000/usuarios)
+  //     .then(() => {
+  //       setUsuarios([]);
+  //       console.log("Usuários deletado com sucesso!");
+  //     })
+  //     .catch(error => console.error(error));
+  // }
+
+  const atualizarUsuario = (e) => {
+    // e.preventDefault();
+    if (usuarioAtual) {
+      axios.put(`https://backend-listar-users.onrender.com/${usuarioAtual.id}`, { name,email, password })
+        .then(response => {
+          setUsuarios(usuarios.map(user =>
+            user.id === usuarioAtual.id ? response.data : user
+          ));
+          setName("")
+          setEmail("")
+          setPassword("")
+          setUsuarioAtual(null); // Limpar o estado do usuário sendo editado
+        })
+        .catch(error => console.error(error))
+    }
+  }
+
+  const editarUsuario = (user) => {
+    setUsuarioAtual(user)
+    setName(user.name)
+    setEmail(user.email)
+    setPassword(user.password)
+  }
+
+  return (
+    <div className="container">
+    <h1>Lista de Usuários</h1>
+        
+          <table className="user-table">
+            <tbody >
+              <tr>
+                <th className="th-body">Id</th>
+                <th className="th-body">Nome</th>
+                <th className="th-body">Email</th>
+                <th className="th-body">Senha</th>
+                <th className="th-body">Funçoes</th>
+              </tr>
+      {usuarios.map(user => (
+              <tr key={user.id}>
+                <td className="td-body">{user.id}</td>
+                <td className="td-body">{user.name}</td>
+                <td className="td-body">{user.email}</td>
+                <td className="td-body">{user.password}</td>
+                <td className="td-body">
+          <button onClick={() => deletarUsuario(user.id)} className="btn delete">Deletar</button>
+          <button onClick={() => editarUsuario(user)} className="btn edit">Editar</button>
+                </td>
+              </tr>
+      ))}
+            </tbody>
+          </table>
+
+
+<form className="user-form">
+    <p className="heading">Cadastrar Usuario</p>
+    <div className="input-field">
+    <svg className="input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M13.106 7.222c0-2.967-2.249-5.032-5.482-5.032-3.35 0-5.646 2.318-5.646 5.702 0 3.493 2.235 5.708 5.762 5.708.862 0 1.689-.123 2.304-.335v-.862c-.43.199-1.354.328-2.29.328-2.926 0-4.813-1.88-4.813-4.798 0-2.844 1.921-4.881 4.594-4.881 2.735 0 4.608 1.688 4.608 4.156 0 1.682-.554 2.769-1.416 2.769-.492 0-.772-.28-.772-.76V5.206H8.923v.834h-.11c-.266-.595-.881-.964-1.6-.964-1.4 0-2.378 1.162-2.378 2.823 0 1.737.957 2.906 2.379 2.906.8 0 1.415-.39 1.709-1.087h.11c.081.67.703 1.148 1.503 1.148 1.572 0 2.57-1.415 2.57-3.643zm-7.177.704c0-1.197.54-1.907 1.456-1.907.93 0 1.524.738 1.524 1.907S8.308 9.84 7.371 9.84c-.895 0-1.442-.725-1.442-1.914z"></path>
+    </svg>
+      <input 
+      type="text"
+          placeholder="Nome"
+          value={name}
+          onChange={(e) => setName(e.target.value)} className="input-field" />
+    </div>
+    <div className="input-field">
+    <svg className="input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M13.106 7.222c0-2.967-2.249-5.032-5.482-5.032-3.35 0-5.646 2.318-5.646 5.702 0 3.493 2.235 5.708 5.762 5.708.862 0 1.689-.123 2.304-.335v-.862c-.43.199-1.354.328-2.29.328-2.926 0-4.813-1.88-4.813-4.798 0-2.844 1.921-4.881 4.594-4.881 2.735 0 4.608 1.688 4.608 4.156 0 1.682-.554 2.769-1.416 2.769-.492 0-.772-.28-.772-.76V5.206H8.923v.834h-.11c-.266-.595-.881-.964-1.6-.964-1.4 0-2.378 1.162-2.378 2.823 0 1.737.957 2.906 2.379 2.906.8 0 1.415-.39 1.709-1.087h.11c.081.67.703 1.148 1.503 1.148 1.572 0 2.57-1.415 2.57-3.643zm-7.177.704c0-1.197.54-1.907 1.456-1.907.93 0 1.524.738 1.524 1.907S8.308 9.84 7.371 9.84c-.895 0-1.442-.725-1.442-1.914z"></path>
+    </svg>
+      <input 
+      type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)} className="input-field" />
+    </div>
+    <div className="input-field">
+    <svg className="input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"></path>
+    </svg>
+      <input type="password"
+        placeholder="Senha"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)} className="input-field" />
+    </div>
+    {usuarioAtual ? (
+      <button onClick={(e) => atualizarUsuario(e)} className="btn submit">Atualizar Usuário</button>
+    ) : (
+      <div>
+        <button className="btn submit" onClick={() => {
+          if (name && email && password) {
+            adicionarUsuario();
+          } else {
+            alert("Preencha todos os campos");
+          }}
+        }>Cadastrar Usuário</button>
+      </div>
+    )}
+</form>
+
+
+
+      {/* <button onClick={deletarTodosUsuarios} style={{ backgroundColor: "red", color: "white" }}>
+        Deletar Todos os Usuários
+      </button> */}
+
+    </div>
+  );
+}
+
+export default App;
