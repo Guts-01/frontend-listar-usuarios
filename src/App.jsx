@@ -31,7 +31,7 @@ function App() {
   };
 
   const deletarUsuario = (id) => {
-    axios.delete(`https://backend-listar-users.onrender.com/${id}`)
+    axios.delete(`https://backend-listar-users.onrender.com/usuarios/${id}`)
       .then(() => {
         setUsuarios(usuarios.filter(user => user.id !== id))
         console.log("Usuário deletado com sucesso!");
@@ -55,7 +55,7 @@ function App() {
   const atualizarUsuario = (e) => {
     e.preventDefault();
     if (usuarioAtual) {
-      axios.put(`https://backend-listar-users.onrender.com/${usuarioAtual.id}`, { name,email, password })
+      axios.put(`https://backend-listar-users.onrender.com/usuarios/${usuarioAtual.id}`, { name,email, password })
         .then(response => {
           setUsuarios(usuarios.map(user =>
             user.id === usuarioAtual.id ? response.data : user
