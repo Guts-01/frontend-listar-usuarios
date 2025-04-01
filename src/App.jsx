@@ -79,6 +79,7 @@ function App() {
   return (
     <div className="container">
     <h1>Lista de Usuários</h1>
+    <p>Uma pequena e simples aplicação web para treinar automação web que cadastra usuarios em uma tabela, tambem é possivel editar, e deletar</p>
         
           <table className="user-table">
             <tbody >
@@ -150,6 +151,8 @@ function App() {
       </div>
     )}
 </form>
+
+      <h4>OBS: insira apenas dados ficticios como email, senha e nomes*</h4>
 
 
 
