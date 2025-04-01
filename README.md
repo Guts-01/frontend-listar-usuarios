@@ -35,7 +35,7 @@ npm run dev
   
 ### Basta segurar CTRL e da um clique, ou acessar este link no navegador
 
-#🛠️ Comandos Úteis
+🛠️ ## Comandos Úteis
 ### Iniciar o servidor de desenvolvimento: npm run dev
 
 ### Compilar para produção: npm run build
@@ -44,7 +44,7 @@ npm run dev
 
 ### Executar testes (se configurado): npm test
 
-#📌 Tecnologias Utilizadas
+📌 ## Tecnologias Utilizadas
 
 - [React](https://react.dev) 
 - [Vite](https://vite.dev)
