@@ -18,7 +18,8 @@ function App() {
       .catch(error => console.error(error));
   }, []);
 
-  const adicionarUsuario = () => {
+  const adicionarUsuario = (e) => {
+    e.preventDefault();
     axios.post("https://backend-listar-users.onrender.com/usuarios", { name,email, password })
       .then(response => {
         setUsuarios([...usuarios, response.data]);
@@ -52,7 +53,7 @@ function App() {
   // }
 
   const atualizarUsuario = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     if (usuarioAtual) {
       axios.put(`https://backend-listar-users.onrender.com/${usuarioAtual.id}`, { name,email, password })
         .then(response => {
@@ -139,9 +140,9 @@ function App() {
       <button onClick={(e) => atualizarUsuario(e)} className="btn submit">Atualizar Usuário</button>
     ) : (
       <div>
-        <button className="btn submit" onClick={() => {
+        <button className="btn submit" onClick={(e) => {
           if (name && email && password) {
-            adicionarUsuario();
+            adicionarUsuario(e);
           } else {
             alert("Preencha todos os campos");
           }}
