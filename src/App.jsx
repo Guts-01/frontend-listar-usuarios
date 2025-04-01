@@ -43,14 +43,6 @@ function App() {
       );
   }
 
-  // const deletarTodosUsuarios = () => {
-  //   axios.delete(http://localhost:9000/usuarios)
-  //     .then(() => {
-  //       setUsuarios([]);
-  //       console.log("Usuários deletado com sucesso!");
-  //     })
-  //     .catch(error => console.error(error));
-  // }
 
   const atualizarUsuario = (e) => {
     e.preventDefault();
@@ -79,31 +71,9 @@ function App() {
   return (
     <div className="container">
     <h1>Lista de Usuários</h1>
-    <p>Uma pequena e simples aplicação web para treinar automação web que cadastra usuarios em uma tabela, tambem é possivel editar, e deletar</p>
+    <p>Uma pequena e simples aplicação web para treinar automação web que cadastra usuarios em uma tabela, tambem é possivel editar e deletar</p>
+      <h4>OBS: insira apenas dados ficticios como email, senha e nomes*</h4>
         
-          <table className="user-table">
-            <tbody >
-              <tr>
-                <th className="th-body">Id</th>
-                <th className="th-body">Nome</th>
-                <th className="th-body">Email</th>
-                <th className="th-body">Senha</th>
-                <th className="th-body">Funçoes</th>
-              </tr>
-      {usuarios.map(user => (
-              <tr key={user.id}>
-                <td className="td-body">{user.id}</td>
-                <td className="td-body">{user.name}</td>
-                <td className="td-body">{user.email}</td>
-                <td className="td-body">{user.password}</td>
-                <td className="td-body">
-          <button onClick={() => deletarUsuario(user.id)} className="btn delete">Deletar</button>
-          <button onClick={() => editarUsuario(user)} className="btn edit">Editar</button>
-                </td>
-              </tr>
-      ))}
-            </tbody>
-          </table>
 
 
 <form className="user-form">
@@ -152,13 +122,30 @@ function App() {
     )}
 </form>
 
-      <h4>OBS: insira apenas dados ficticios como email, senha e nomes*</h4>
 
-
-
-      {/* <button onClick={deletarTodosUsuarios} style={{ backgroundColor: "red", color: "white" }}>
-        Deletar Todos os Usuários
-      </button> */}
+          <table className="user-table">
+            <tbody >
+              <tr>
+                <th className="th-body">Id</th>
+                <th className="th-body">Nome</th>
+                <th className="th-body">Email</th>
+                <th className="th-body">Senha</th>
+                <th className="th-body">Funçoes</th>
+              </tr>
+      {usuarios.map(user => (
+              <tr key={user.id}>
+                <td className="td-body">{user.id}</td>
+                <td className="td-body">{user.name}</td>
+                <td className="td-body">{user.email}</td>
+                <td className="td-body">{user.password}</td>
+                <td className="td-body">
+          <button onClick={() => deletarUsuario(user.id)} className="btn delete">Deletar</button>
+          <button onClick={() => editarUsuario(user)} className="btn edit">Editar</button>
+                </td>
+              </tr>
+      ))}
+            </tbody>
+          </table>
 
     </div>
   );
