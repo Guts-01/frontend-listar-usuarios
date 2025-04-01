@@ -19,15 +19,16 @@ git clone https://github.com/Guts-01/frontend-listar-usuarios.git
 cd frontend-listar-usuarios
 
 ```
-### Após isso, rode este comando estando na pasta > frontend-listar-usuarios
+### 2️⃣ Instale as dependências
+
 ```sh
 npm install
 ```
-### Inicie o Servidor de Desenvolvimento
+### 3️⃣ Inicie o servidor de desenvolvimento
 ```sh
 npm run dev
 ```
-
+### 4️⃣ Acesse no navegador
 ### Após iniciar, o terminal mostrará algo como:
 
   ### ➜  Local:   http://localhost:5173/
