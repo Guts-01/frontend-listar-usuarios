@@ -69,7 +69,8 @@ function App() {
     }
   }
 
-  const editarUsuario = (user) => {
+  const editarUsuario = (e,user) => {
+    e.preventDefault();
     setUsuarioAtual(user)
     setName(user.name)
     setEmail(user.email)
