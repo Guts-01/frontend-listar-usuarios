@@ -18,13 +18,12 @@ body{
     margin-top: 20px;
     background: white;
     border-radius: 8px;
-    overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
   .user-table th, .user-table td {
     border: 1px solid #ddd;
-    padding: 5px 15px;
+    padding: 10px 15px;
     text-align: center;
   }
   
@@ -95,4 +94,67 @@ body{
   .btn.submit:hover {
     background-color: #218838;
   }
+  .mobile{
+    display: none;
+  }
   
+  @media (max-width: 440px) {
+    tbody{
+      width: 250px;
+      padding: 10px;
+      display: grid;
+      grid-template-columns: 1fr;
+
+    }
+    tr:nth-child(even){
+      background-color: #ffffff !important;
+    }
+    tr{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    th{
+      display: none;
+    }
+    .mobile{
+      display:block;
+      padding: 0 !important;
+      border: 1px solid black !important;
+    }
+    .mobile-functions{
+      display: flex;
+      justify-content: center;
+      flex-direction: row;
+      align-items: center;
+    }
+    td{
+      display: flex;
+      box-shadow: 0 6px 20px  black;
+      flex-direction: column;
+      height: 60px;
+      justify-content: space-around;
+      border: none  !important;
+      padding: 0 !important;
+      padding-bottom: 5px !important;
+    }
+    .btn{
+      width: 70px;
+      height: 30px;
+      text-align: center;
+    }
+    .delete{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .edit{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .submit{
+      height: 40px;
+    }
+  }

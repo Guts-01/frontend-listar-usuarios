@@ -134,13 +134,15 @@ function App() {
               </tr>
       {usuarios.map(user => (
               <tr key={user.id}>
-                <td className="td-body">{user.id}</td>
-                <td className="td-body">{user.name}</td>
-                <td className="td-body">{user.email}</td>
-                <td className="td-body">{user.password}</td>
-                <td className="td-body">
+                <td className="td-body"><th className="mobile">ID</th><strong>{user.id}</strong></td>
+                <td className="td-body"><th className="mobile">Nome</th>{user.name}</td>
+                <td className="td-body"><th className="mobile">Email</th>{user.email}</td>
+                <td className="td-body"><th className="mobile">Senha</th>{user.password}</td>
+                <td className="td-body"><th className="mobile">Funções</th>
+                <span className="mobile-functions">
           <button onClick={() => deletarUsuario(user.id)} className="btn delete">Deletar</button>
           <button onClick={() => editarUsuario(user)} className="btn edit">Editar</button>
+                </span>
                 </td>
               </tr>
       ))}
